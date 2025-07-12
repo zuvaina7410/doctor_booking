@@ -18,16 +18,25 @@ FilterDoctor({super.key,required this.doctorModelList});
     return Scaffold(
       appBar: AppBar(
         backgroundColor: buttonColor,
+        leading: IconButton(
+        icon: Icon(Icons.arrow_back, color: textColor), // 👈 your custom color
+        onPressed: () => Get.back(),
+          ),
         title: customText(
           text: "Doctors",
           color: textColor,
           size: 25.0,
-          weight: FontWeight.w600
-          
+          weight: FontWeight.w600        
         ),
+        
         centerTitle: true,
       ),
-      body:  Expanded(       
+      body:  doctorModelList.isEmpty
+          ? Center(child: customText(
+            text: "No Doctors Found",
+            size: 25.0,
+            color: buttonColor))
+          : Expanded(       
               child: ListView.builder(
                 itemCount: doctorModelList.length,
                 itemBuilder: (context,index){

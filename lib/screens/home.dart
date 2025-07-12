@@ -33,8 +33,7 @@ final DoctorController doctorController =Get.put(DoctorController());
           ),
         ),
       centerTitle:false,
-      actions: [
-        
+      actions: [       
          IconButton(
           icon: Icon(Icons.picture_as_pdf_sharp,color: textColor,),
           onPressed: (){
@@ -46,28 +45,20 @@ final DoctorController doctorController =Get.put(DoctorController());
             icon: Icon(Icons.tune,color: textColor,),
             onPressed: (){
 
-              // Get.defaultDialog(
-              //   actions: [
-              //     Column(
-              //       children: [
-              //         customText(text: "Filter By",
-              //         weight: FontWeight.bold),
-              //         Spacer(),
-              //         customText(text: "Gender"),
-
-              //       ],
-              //     )
-              //   ]
-
-              // );
               showFilterDialog();
           
             }, ),
         ),
           
       ],),
-      body:Obx(((){
-        return Column(
+      body:
+      // doctorController.doctorList.isEmpty
+      //     ? Center(child: CircularProgressIndicator())
+      //     :
+      Obx(((){
+     //   if(doctorController.doctorList!.isEmpty){
+        return 
+         Column(
           children: [
             Expanded(       
               child: ListView.builder(
@@ -169,6 +160,10 @@ final DoctorController doctorController =Get.put(DoctorController());
             ),
           ],
         );
+      // }
+      // else {
+      //   return Center(child: CircularProgressIndicator());
+      // }
       }))
      
     );

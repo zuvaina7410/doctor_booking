@@ -84,10 +84,11 @@ class DoctorDetails extends StatelessWidget {
                       ),
                       customText(
                         text: doctorModel.department,
-                        size: 16,
+                        size: 14,
                         color: mainTextColor,
                         weight: FontWeight.normal,
                         count: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ],
                   ),

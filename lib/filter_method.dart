@@ -66,29 +66,24 @@ void showFilterDialog() {
                   String sGender,sTime;
                   sGender =filterController.selectedGender.toString();
                   sTime=filterController.selectedTimeSlot.toString();
-                
-      //         final filterViewList =doctorController.filterDoctors();
-      //         log("In filter method===${doctorController.filteredList}");
-         
-      //     //   Get.to(() => FilterDoctor(doctorModelList: doctorController.filterDoctors.toList));
-      //        // Get.to(()=>FilterDoctor(doctorModelList: filterViewList,));
-      //            // fetchFilterDoctor();
-      //             Get.to(() => FilterDoctor(
-      //   doctorModelList: doctorController.filteredList.toList(),
-      // ));
-final filteredDoctors = doctorController.filterDoctors(
-  gender: sGender,
-  time: sTime,
-);
+                  
+                  final filteredDoctors = doctorController.filterDoctors(
+                    gender: sGender,
+                    time: sTime,
+                  );
 
-Get.to(() => FilterDoctor(doctorModelList: filteredDoctors));
+                  Get.to(() => FilterDoctor(doctorModelList: filteredDoctors),
+                  transition: Transition.zoom,
+                  duration: Duration(milliseconds: 1000));
+                  },
 
-                },
                 child: customText(text: "SUBMIT",color: textColor),
               ),
             )
           ],
         )),
+        barrierDismissible: true,
   );
+ 
 }
 
