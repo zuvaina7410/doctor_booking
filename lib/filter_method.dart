@@ -1,5 +1,10 @@
+import 'dart:developer';
+
 import 'package:doctor_booking/constants.dart';
+import 'package:doctor_booking/controller/doctor_controller.dart';
 import 'package:doctor_booking/controller/filter_controller.dart';
+import 'package:doctor_booking/model/doctor_model.dart';
+import 'package:doctor_booking/screens/filter_doctorslist.dart';
 import 'package:doctor_booking/widgets/custom_choicechip.dart';
 import 'package:doctor_booking/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +15,8 @@ import 'package:doctor_booking/constants.dart';
 
 void showFilterDialog() {
   final filterController = Get.put(FilterController());
+  //final DoctorController doctorController =Get.put(DoctorController());
+  final DoctorController doctorController = Get.find<DoctorController>();
 
   Get.defaultDialog(
     title: "Filter by",
@@ -55,8 +62,26 @@ void showFilterDialog() {
                   Get.back();
                   print("Selected Gender: ${filterController.selectedGender}");
                   print("Selected Time: ${filterController.selectedTimeSlot}");
-                
 
+                  String sGender,sTime;
+                  sGender =filterController.selectedGender.toString();
+                  sTime=filterController.selectedTimeSlot.toString();
+                
+      //         final filterViewList =doctorController.filterDoctors();
+      //         log("In filter method===${doctorController.filteredList}");
+         
+      //     //   Get.to(() => FilterDoctor(doctorModelList: doctorController.filterDoctors.toList));
+      //        // Get.to(()=>FilterDoctor(doctorModelList: filterViewList,));
+      //            // fetchFilterDoctor();
+      //             Get.to(() => FilterDoctor(
+      //   doctorModelList: doctorController.filteredList.toList(),
+      // ));
+final filteredDoctors = doctorController.filterDoctors(
+  gender: sGender,
+  time: sTime,
+);
+
+Get.to(() => FilterDoctor(doctorModelList: filteredDoctors));
 
                 },
                 child: customText(text: "SUBMIT",color: textColor),

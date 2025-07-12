@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:doctor_booking/Webservice/webservice.dart';
 import 'package:doctor_booking/model/doctor_model.dart';
 import 'package:get/get.dart';
@@ -32,32 +34,19 @@ class DoctorController extends GetxController{
 
   }
 
-  void fetchFilterDoctors() async{
-
-    try {
-      isLoading(true);
-
-      var filterDoctor = await Webservice().fetchFilterDoctorsList();
-
-      if(filterDoctor!=null){
-      //  doctorList.value = filterDoctor;
-        filteredList.value=filterDoctor;
-      }
-    } finally {
-      isLoading(false);
-    }
 
 
-  }
-
-
-
-  // filter({String gender = '', String time = ''}) {
-  //   filteredList.value = doctorList.where((doc) {
-  //     final genderMatch = gender.isEmpty || doc.gender == gender;
-  //     final timeMatch = time.isEmpty || doc.time.contains(time);
-  //     return genderMatch && timeMatch;
-  //   }).toList();
-  // }
+List<DoctorModel> filterDoctors({String gender = '', String time = ''}) {
+  final filtered = doctorList.where((doc) {
+    final matchGender = gender.isEmpty || doc.gender == gender;
+    final matchTime = time.isEmpty || doc.time == time;
+    return matchGender && matchTime;
+  }).toList();
+for (var doc in doctorList) {
+  log("Doctor: ${doc.name}, Gender: ${doc.gender}, Time: ${doc.time}");
+}
+  filteredList.value = filtered;
+  return filtered;
+}
 
 }

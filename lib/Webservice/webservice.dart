@@ -26,21 +26,30 @@ throw Exception('Failed to load doctor list');
 }
 
 
-Future<List<DoctorModel>?> fetchFilterDoctorsList() async {
-  try{
-  final response = await http.get(Uri.parse("https://686f534991e85fac42a07d85.mockapi.io/api/v1/test/doctors/"));
-  if(response.statusCode==200){
-    final parsed= json.decode(response.body).cast<Map<String,dynamic>>();
-    return parsed.map<DoctorModel>((json)=>DoctorModel.fromJson(json)).toList();
-  }
-  else{
-throw Exception('Failed to load filter doctor list');
-  }
-  }
-  catch(e){
-    log("Fetch Data Service ==="+e.toString());
-  }
 
-}
+// Future<List<DoctorModel>?> fetchFilterDoctorsList(String gender,String time) async {
+//   try{
+
+//     log("gender in webservice =${gender.toString()}");
+//     log("time in webservice =${time.toString()}");
+//   final response = await http.post(Uri.parse("https://686f534991e85fac42a07d85.mockapi.io/api/v1/test/doctors/"),
+//   body: {'gender': gender.trim(),
+//         'time': time.trim(),}
+
+//   );
+//   if(response.statusCode==200){
+//     final parsed= json.decode(response.body).cast<Map<String,dynamic>>();
+//     return parsed.map<DoctorModel>((json)=>DoctorModel.fromJson(json)).toList();
+
+//   }
+//   else{
+// throw Exception('Failed to load filter doctor list');
+//   }
+//   }
+//   catch(e){
+//     log("Fetch Data Service ===${e.toString()}");
+//   }
+
+// }
 
 }
