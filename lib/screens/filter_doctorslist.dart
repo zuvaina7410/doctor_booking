@@ -19,7 +19,7 @@ FilterDoctor({super.key,required this.doctorModelList});
       appBar: AppBar(
         backgroundColor: buttonColor,
         leading: IconButton(
-        icon: Icon(Icons.arrow_back, color: textColor), // 👈 your custom color
+        icon: Icon(Icons.arrow_back, color: textColor), 
         onPressed: () => Get.back(),
           ),
         title: customText(
