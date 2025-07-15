@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:doctor_booking/Webservice/webservice.dart';
 import 'package:doctor_booking/model/doctor_model.dart';
 import 'package:get/get.dart';
@@ -46,5 +44,6 @@ class DoctorController extends GetxController {
     filteredDoctors.value = allDoctors;
     isFiltered.value = false;
   }
+
 
 }

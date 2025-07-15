@@ -1,8 +1,8 @@
-import 'package:doctor_booking/controller/filter_controller.dart';
+import 'package:doctor_booking/controller/doctor_controller.dart';
 import 'package:doctor_booking/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 
-Widget genderRadio(String gender, FilterController controller) {
+Widget genderRadio(String gender, DoctorController controller) {
   return Row(
     children: [
       customText(text: gender,size: 12),

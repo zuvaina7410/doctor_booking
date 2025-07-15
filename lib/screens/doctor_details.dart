@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:doctor_booking/constants.dart';
 import 'package:doctor_booking/model/doctor_model.dart';
+import 'package:doctor_booking/screens/patient_booking.dart';
 import 'package:doctor_booking/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,13 +14,13 @@ class DoctorDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: textColor,
+      backgroundColor: customWhite,
        body: Stack(
   children: [
     Container(
       height: MediaQuery.of(context).size.height,
       width: double.infinity,
-      color: buttonColor,
+      color: mainColor,
     ),
 
     Positioned(
@@ -56,7 +57,7 @@ class DoctorDetails extends StatelessWidget {
      //   height: 200,
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
         decoration: BoxDecoration(
-          color: textColor,
+          color: customWhite,
           borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(40),
             topRight: Radius.circular(40),
@@ -166,16 +167,16 @@ class DoctorDetails extends StatelessWidget {
 
       child: GestureDetector(
         onTap: () {
-        //  Get.to(BookingPage());
+          Get.to(PatientBooking());
         },
         child: Container(
           height: 60,
-          color: buttonColor,
+          color: mainColor,
           child: Center(child: customText(
             text: "BOOK AN APPOINTMENT",
             size: 16,
             weight: FontWeight.bold,
-            color: textColor
+            color: customWhite
           ),),
           ),
       ))

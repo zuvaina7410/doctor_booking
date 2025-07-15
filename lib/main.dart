@@ -1,5 +1,4 @@
 import 'package:doctor_booking/constants.dart';
-import 'package:doctor_booking/screens/doctor_details.dart';
 import 'package:doctor_booking/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,7 +16,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Booking Doctor',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: buttonColor),
+        colorScheme: ColorScheme.fromSeed(seedColor: mainColor),
         useMaterial3: true,
       ),
       home:  HomePage(),
