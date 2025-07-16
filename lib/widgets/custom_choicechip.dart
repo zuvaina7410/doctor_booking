@@ -8,9 +8,6 @@ Widget timeChip(String time, FilterController controller) {
 
   return ChoiceChip(
      label:customText(text: time,size: 8,color:isSelected ? Colors.white : Colors.black ),
-     // Text(time,
-    //     style: TextStyle(
-    //         color: isSelected ? Colors.white : Colors.black, fontSize: 13),),
     selected: isSelected,
     selectedColor: buttonColor,//Colors.black,
     backgroundColor: Colors.grey[300],

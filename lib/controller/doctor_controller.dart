@@ -4,49 +4,47 @@ import 'package:doctor_booking/Webservice/webservice.dart';
 import 'package:doctor_booking/model/doctor_model.dart';
 import 'package:get/get.dart';
 
-class DoctorController extends GetxController{
+class DoctorController extends GetxController {
+  RxList<DoctorModel> allDoctors = <DoctorModel>[].obs;
+  RxList<DoctorModel> filteredDoctors = <DoctorModel>[].obs;
 
-  var isLoading = true.obs;
-  var doctorList = <DoctorModel>[].obs;
-  var filteredList = <DoctorModel>[].obs;
+   final RxString selectedGender = ''.obs;
+    final RxString selectedTiming = ''.obs;
+    RxBool isFiltered = false.obs;
+
+    // var selectedGender = ''.obs;
+  //var selectedTimeSlot = ''.obs;
 
   @override
   void onInit() {
-    fetchDoctors();
     super.onInit();
+    fetchDoctors();
   }
 
-  void fetchDoctors() async{
+  void fetchDoctors() async {
+    // Fetch from API
+    var result = await Webservice().fetchDoctorsList(); // Replace with your API call
 
-    try {
-      isLoading(true);
-
-      var doctors = await Webservice().fetchDoctorsList();
-
-      if(doctors!=null){
-        doctorList.value = doctors;
-      //  filteredList.value=doctors;
-      }
-    } finally {
-      isLoading(false);
+    if(result!=null){
+    allDoctors.value = result;
+    filteredDoctors.value = result;
+    isFiltered.value = false;
     }
 
-
   }
 
+  void filterDoctors({String? gender, String? timing}) {
+    filteredDoctors.value = allDoctors.where((doc) {
+      final genderMatch = gender == null || doc.gender == gender;
+      final timeMatch = timing == null || doc.time == timing;
+      return genderMatch && timeMatch;
+    }).toList();
+    isFiltered.value = true;
+  }
 
-
-List<DoctorModel> filterDoctors({String gender = '', String time = ''}) {
-  final filtered = doctorList.where((doc) {
-    final matchGender = gender.isEmpty || doc.gender == gender;
-    final matchTime = time.isEmpty || doc.time == time;
-    return matchGender && matchTime;
-  }).toList();
-for (var doc in doctorList) {
-  log("Doctor: ${doc.name}, Gender: ${doc.gender}, Time: ${doc.time}");
-}
-  filteredList.value = filtered;
-  return filtered;
-}
+ void clearFilter() {
+    filteredDoctors.value = allDoctors;
+    isFiltered.value = false;
+  }
 
 }

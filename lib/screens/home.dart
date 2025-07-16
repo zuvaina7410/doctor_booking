@@ -1,14 +1,12 @@
-import 'dart:developer';
 
 import 'package:doctor_booking/constants.dart';
 import 'package:doctor_booking/controller/doctor_controller.dart';
 import 'package:doctor_booking/filter_method.dart';
-import 'package:doctor_booking/model/doctor_model.dart';
 import 'package:doctor_booking/screens/doctor_details.dart';
 import 'package:doctor_booking/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -28,11 +26,14 @@ final DoctorController doctorController =Get.put(DoctorController());
      //   toolbarHeight: 60,
         backgroundColor: buttonColor,
         title: Center(
-          child: Text("Doctors",
-          style: TextStyle(color: textColor),
-          ),
+          child: customText(
+          text: "Doctors",
+          color: textColor,
+          size: 25.0,
+          weight: FontWeight.bold        
         ),
-      centerTitle:false,
+        ),
+      centerTitle:true,
       actions: [       
          IconButton(
           icon: Icon(Icons.picture_as_pdf_sharp,color: textColor,),
@@ -52,19 +53,15 @@ final DoctorController doctorController =Get.put(DoctorController());
           
       ],),
       body:
-      // doctorController.doctorList.isEmpty
-      //     ? Center(child: CircularProgressIndicator())
-      //     :
       Obx(((){
-     //   if(doctorController.doctorList!.isEmpty){
         return 
          Column(
           children: [
             Expanded(       
               child: ListView.builder(
-                itemCount: doctorController.doctorList.length,
+                itemCount: doctorController.filteredDoctors.length,
                 itemBuilder: (context,index){
-                  final doctor = doctorController.doctorList[index];
+                  final doctor = doctorController.filteredDoctors[index];
                   return GestureDetector(
                     onTap: () {
                       Get.to(()=>DoctorDetails(doctorModel: doctor,));
@@ -160,10 +157,6 @@ final DoctorController doctorController =Get.put(DoctorController());
             ),
           ],
         );
-      // }
-      // else {
-      //   return Center(child: CircularProgressIndicator());
-      // }
       }))
      
     );

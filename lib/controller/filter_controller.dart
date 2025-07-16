@@ -8,10 +8,5 @@ class FilterController extends GetxController {
   void clearFilters() {
     selectedGender.value = '';
     selectedTimeSlot.value = '';
-  }
-
-
-
-
-  
+  } 
 }

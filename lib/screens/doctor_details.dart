@@ -1,12 +1,10 @@
 import 'dart:developer';
-
 import 'package:doctor_booking/constants.dart';
 import 'package:doctor_booking/model/doctor_model.dart';
-import 'package:doctor_booking/screens/home.dart';
 import 'package:doctor_booking/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+
 
 class DoctorDetails extends StatelessWidget {
   final DoctorModel doctorModel;
